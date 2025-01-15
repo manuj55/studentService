@@ -45,6 +45,16 @@ router.get("/", async (req, res) => {
     }
 });
 
+
+router.get("/:id", async (req, res) => {
+    try {
+        const students = await Student.findById(req.params.id);
+        res.status(200).json(students);
+    } catch (error) {
+        return res.status(500).json({ message: "Server Error:Something went wrong" });
+    }
+});
+
 //update student
 router.put("/:id", async (req, res) => {
     const { id } = req.params;
